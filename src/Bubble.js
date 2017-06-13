@@ -93,7 +93,7 @@ export default class Bubble extends React.Component {
 
   onLongPress() {
     if (this.props.onLongPress) {
-      this.props.onLongPress(this.context);
+      this.props.onLongPress(this.context, this.props.currentMessage);
     } else {
       if (this.props.currentMessage.text) {
         const options = [
@@ -129,10 +129,16 @@ export default class Bubble extends React.Component {
               {this.renderCustomView()}
               {this.renderMessageImage()}
               {this.renderMessageText()}
-              <View style={[styles.bottom, this.props.bottomContainerStyle[this.props.position]]}>
-                {this.renderTime()}
-                {this.renderTicks()}
-              </View>
+
+            </View>
+          </TouchableWithoutFeedback>
+        </View>
+
+        <View style={[styles[this.props.position].timeWrapper, this.props.wrapperStyle[this.props.position], this.handleBubbleToNext(), this.handleBubbleToPrevious()]}>
+          <TouchableWithoutFeedback style={styles.blank}>
+            <View style={[styles.timeBottom, this.props.bottomContainerStyle[this.props.position]]}>
+              {this.renderTime()}
+              {this.renderTicks()}
             </View>
           </TouchableWithoutFeedback>
         </View>
@@ -143,15 +149,29 @@ export default class Bubble extends React.Component {
 
 const styles = {
   left: StyleSheet.create({
+    blank: {
+      backgroundColor: 'white'
+    },
     container: {
       flex: 1,
       alignItems: 'flex-start',
     },
     wrapper: {
-      borderRadius: 7,
+      borderRadius: 7.5,
       backgroundColor: '#f0f0f0',
+      paddingTop: 3,
+      paddingBottom: 3,
+      paddingLeft: 3,
+      paddingRight: 3,
       marginRight: 60,
       minHeight: 20,
+      justifyContent: 'flex-end',
+    },
+    timeWrapper: {
+      borderRadius: 0,
+      backgroundColor: '#ffffff',
+      marginRight: 20,
+      minHeight: 15,
       justifyContent: 'flex-end',
     },
     containerToNext: {
@@ -162,15 +182,29 @@ const styles = {
     },
   }),
   right: StyleSheet.create({
+    blank: {
+      backgroundColor: 'white'
+    },
     container: {
       flex: 1,
       alignItems: 'flex-end',
     },
     wrapper: {
-      borderRadius: 7,
+      borderRadius: 7.5,
       backgroundColor: '#0084ff',
+      paddingTop: 3,
+      paddingBottom: 3,
+      paddingLeft: 3,
+      paddingRight: 3,
       marginLeft: 60,
       minHeight: 20,
+      justifyContent: 'flex-end',
+    },
+    timeWrapper: {
+      borderRadius: 0,
+      backgroundColor: '#ffffff',
+      marginLeft: 20,
+      minHeight: 15,
       justifyContent: 'flex-end',
     },
     containerToNext: {
@@ -183,6 +217,11 @@ const styles = {
   bottom: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
+  },
+  timeBottom: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    backgroundColor: '#ffffff'
   },
   tick: {
     fontSize: 10,
