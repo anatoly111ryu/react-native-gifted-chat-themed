@@ -93,7 +93,7 @@ export default class Bubble extends React.Component {
 
   onLongPress() {
     if (this.props.onLongPress) {
-      this.props.onLongPress(this.context);
+      this.props.onLongPress(this.context, this.props.currentMessage);
     } else {
       if (this.props.currentMessage.text) {
         const options = [
@@ -119,7 +119,6 @@ export default class Bubble extends React.Component {
   render() {
     return (
       <View style={[styles[this.props.position].container, this.props.containerStyle[this.props.position]]}>
-
         <View style={[styles[this.props.position].wrapper, this.props.wrapperStyle[this.props.position], this.handleBubbleToNext(), this.handleBubbleToPrevious()]}>
           <TouchableWithoutFeedback
             onLongPress={this.onLongPress}
@@ -160,7 +159,10 @@ const styles = {
     wrapper: {
       borderRadius: 7.5,
       backgroundColor: '#f0f0f0',
-      padding: 3,
+      paddingTop: 3,
+      paddingBottom: 3,
+      paddingLeft: 3,
+      paddingRight: 3,
       marginRight: 60,
       minHeight: 20,
       justifyContent: 'flex-end',
@@ -190,7 +192,10 @@ const styles = {
     wrapper: {
       borderRadius: 7.5,
       backgroundColor: '#0084ff',
-      padding: 3,
+      paddingTop: 3,
+      paddingBottom: 3,
+      paddingLeft: 3,
+      paddingRight: 3,
       marginLeft: 60,
       minHeight: 20,
       justifyContent: 'flex-end',
