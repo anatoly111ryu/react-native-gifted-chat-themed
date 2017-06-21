@@ -26,7 +26,7 @@ const containerStyle = {
 };
 
 const textStyle = {
-  fontSize: 8,
+  fontSize: 10,
   backgroundColor: 'transparent',
   textAlign: 'right'
 };
