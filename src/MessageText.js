@@ -51,6 +51,9 @@ export default class MessageText extends React.Component {
   render() {
     return (
       <View style={[styles[this.props.position].container, this.props.containerStyle[this.props.position]]}>
+        <Text
+            numberOfLines={1}
+            style={[{color: '#5a5a5a',fontSize: 8,padding:2}]}>{this.props.currentMessage.name}</Text>
         <ParsedText
           style={[styles[this.props.position].text, this.props.textStyle[this.props.position]]}
           parse={[
@@ -80,25 +83,25 @@ const styles = {
     container: {
     },
     text: {
-      color: '#5a5a5a',
+      color: '#000000',
       ...textStyle,
     },
     link: {
       color: 'black',
       textDecorationLine: 'underline',
-    },
+    }
   }),
   right: StyleSheet.create({
     container: {
     },
     text: {
-      color: '#5a5a5a',
+      color: '#000000',
       ...textStyle,
     },
     link: {
       color: 'black',
       textDecorationLine: 'underline',
-    },
+    }
   }),
 };
 
