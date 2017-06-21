@@ -53,7 +53,7 @@ export default class MessageText extends React.Component {
       <View style={[styles[this.props.position].container, this.props.containerStyle[this.props.position]]}>
         <Text
             numberOfLines={1}
-            style={[{color: '#5a5a5a',fontSize: 8,padding:2,marginLeft: 10}]}>{this.props.currentMessage.name}</Text>
+            style={[{color: '#5a5a5a',fontSize: 14,padding:2,marginLeft: 10}]}>{this.props.currentMessage.name}</Text>
         <ParsedText
           style={[styles[this.props.position].text, this.props.textStyle[this.props.position]]}
           parse={[
@@ -70,7 +70,7 @@ export default class MessageText extends React.Component {
 }
 
 const textStyle = {
-  fontSize: 12,
+  fontSize: 16,
   lineHeight: 20,
   marginTop: 5,
   marginBottom: 5,
